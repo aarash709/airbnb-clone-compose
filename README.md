@@ -1,2 +1,2 @@
 # airbnb-clone-compose
-A clone of Airbnb`s UI in Compose and Kotlin
+A clone of Airbnb`s UI in Compose.
