@@ -1,2 +1,2 @@
 # airbnb-clone-compose
-A clone of Airbnb`s UI in Compose.
+A UI clone of Airbnb in Compose
