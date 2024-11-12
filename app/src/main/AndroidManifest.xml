@@ -8,11 +8,11 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/airbnb_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AndroidTemplate"
+        android:theme="@style/Theme.AirbnbClone"
         tools:targetApi="31">
         <profileable
             android:shell="true"
@@ -20,7 +20,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.AndroidTemplate">
+            android:theme="@style/Theme.AirbnbClone">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

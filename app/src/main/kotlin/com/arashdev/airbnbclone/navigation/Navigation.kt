@@ -8,10 +8,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.arashdev.airbnbclone.components.EmptyMessages
-import com.arashdev.airbnbclone.components.EmptyTrips
-import com.arashdev.airbnbclone.profile.Profile
+import com.arashdev.airbnbclone.Messages.Messages
+import com.arashdev.airbnbclone.Trips.Trips
 import com.arashdev.airbnbclone.explore.ExploreScreen
+import com.arashdev.airbnbclone.profile.Profile
 import com.arashdev.airbnbclone.wishlist.Wishlist
 import kotlinx.serialization.Serializable
 
@@ -36,11 +36,11 @@ fun AirbnbNavHost(
 		composable<Trips>(
 			enterTransition = { EnterTransition.None },
 			exitTransition = { ExitTransition.None }
-		) { EmptyTrips() }
+		) { Trips() }
 		composable<Messages>(
 			enterTransition = { EnterTransition.None },
 			exitTransition = { ExitTransition.None }
-		) { EmptyMessages() }
+		) { Messages() }
 		composable<Profile>(
 			enterTransition = { EnterTransition.None },
 			exitTransition = { ExitTransition.None }

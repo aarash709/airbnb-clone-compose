@@ -1,14 +1,11 @@
 package com.arashdev.airbnbclone.components
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.AccountCircle
@@ -25,6 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -35,6 +33,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.arashdev.airbnbclone.R
 import com.arashdev.airbnbclone.navigation.Explore
 import com.arashdev.airbnbclone.navigation.Messages
 import com.arashdev.airbnbclone.navigation.Profile
@@ -58,8 +57,7 @@ fun AirbnbNavigationBar(
 		Row(
 			modifier = Modifier
 				.fillMaxWidth()
-				.padding(horizontal = 24.dp),
-			horizontalArrangement = Arrangement.SpaceBetween
+				.padding(horizontal = 0.dp),
 		) {
 			items.forEach { topLevelDestination ->
 				val onClick = {
@@ -80,19 +78,30 @@ fun AirbnbNavigationBar(
 				val unselectedColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
 				val color =
 					if (selected) AccentColor else unselectedColor
-				AirbnbNavigationBarItem(
-					modifier = Modifier.selectable(
-						selected = selected,
-						enabled = true,
-						onClick = { onClick() }
-					),
-					icon = {
+				val icon: @Composable () -> Unit = {
+					if (topLevelDestination.label == "Trips")
+						Icon(
+							painterResource(R.drawable.airbnb_icon),
+							tint = color,
+							contentDescription = topLevelDestination.label
+						)
+					else
 						Icon(
 							imageVector = topLevelDestination.icon,
 							tint = color,
 							contentDescription = topLevelDestination.label
 						)
-					},
+				}
+				AirbnbNavigationBarItem(
+					modifier = Modifier
+						.weight(1f)
+						.selectable(
+							selected = selected,
+							enabled = true,
+							onClick = { onClick() }
+						)
+						,
+					icon = icon,
 					label = {
 						Text(
 							text = topLevelDestination.label,
