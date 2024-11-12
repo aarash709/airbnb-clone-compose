@@ -40,7 +40,34 @@ fun EmptyTrips(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun EmptyWishlist(modifier: Modifier = Modifier) {
+fun EmptyWishlist(
+	modifier: Modifier = Modifier,
+	title: String ="Login to view your Wishlists",
+	description: String ="You can create,view or edit Wishlists once you`ve logged in."
+) {
+	Column(modifier = modifier) {
+//
+		Text(
+			title,
+			fontWeight = FontWeight.Bold,
+			fontSize = 18.sp,
+			modifier = Modifier.padding(top = 32.dp, bottom = 8.dp)
+		)
+		Text(
+			description,
+			fontSize = 18.sp,
+			color = LocalContentColor.current.copy(alpha = 0.75f),
+		)
+		Button(
+			onClick = {},
+			modifier = Modifier.padding(vertical = 16.dp),
+			shape = RoundedCornerShape(12.dp),
+			contentPadding = PaddingValues(vertical = 16.dp, horizontal = 24.dp),
+			colors = ButtonDefaults.buttonColors(containerColor = AccentColor)
+		) {
+			Text("Log in", fontSize = 16.sp)
+		}
+	}
 
 }
 
