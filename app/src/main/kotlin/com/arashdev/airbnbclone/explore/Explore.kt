@@ -2,20 +2,23 @@ package com.arashdev.airbnbclone.explore
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.TimeToLeave
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.PrimaryScrollableTabRow
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -28,7 +31,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.arashdev.airbnbclone.data.AirbnbDataItem
+import com.arashdev.airbnbclone.data.categories
 import com.arashdev.airbnbclone.data.rawData
 import com.arashdev.airbnbclone.ui.theme.AirbnbCloneTheme
 import kotlinx.serialization.json.Json
@@ -55,23 +60,41 @@ fun ExploreScreen(modifier: Modifier = Modifier) {
 
 			PrimaryScrollableTabRow(
 				selectedTabIndex = selectedIndex,
-				edgePadding = 0.dp,
+				modifier = Modifier.fillMaxWidth(),
+				edgePadding = 24.dp,
 				containerColor = MaterialTheme.colorScheme.background,
-				divider = {}
+				divider = {
+					HorizontalDivider(
+						color =
+						MaterialTheme.colorScheme.onSurface.copy(alpha = 0.10f),
+						modifier = modifier,
+					)
+				}
 			) {
-				repeat(5) {
-					val selected = selectedIndex == it
+				categories.forEachIndexed { index, category ->
+					val selected = selectedIndex == index
 					val selectedColor =
-						if (selected) LocalContentColor.current else LocalContentColor.current.copy(
+						if (selected) LocalContentColor.current
+						else LocalContentColor.current.copy(
 							alpha = 0.5f
 						)
-					Tab(selected = selected, onClick = { selectedIndex = it }) {
+					Tab(selected = selected, onClick = { selectedIndex = index }) {
 						Column(
-							Modifier,
+							Modifier.height(IntrinsicSize.Max),
 							horizontalAlignment = Alignment.CenterHorizontally
 						) {
-							Icon(Icons.Default.TimeToLeave, null, tint = selectedColor)
-							Text("text", color = selectedColor)
+							Icon(
+								imageVector = category.icon,
+								modifier = Modifier.size(30.dp),
+								contentDescription = null,
+								tint = selectedColor
+							)
+							Text(
+								category.name,
+								modifier = Modifier.padding(bottom = 12.dp),
+								fontSize = 14.sp,
+								color = selectedColor
+							)
 						}
 					}
 				}

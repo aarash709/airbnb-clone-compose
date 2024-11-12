@@ -36,7 +36,7 @@ fun ExploreTopBar(modifier: Modifier = Modifier) {
 	Row(
 		modifier = modifier
 			.fillMaxWidth()
-			.padding(start = 24.dp, top = 4.dp, end = 24.dp, bottom = 12.dp),
+			.padding(start = 24.dp, top = 8.dp, end = 24.dp, bottom = 16.dp),
 		verticalAlignment = Alignment.CenterVertically,
 		horizontalArrangement = Arrangement.SpaceBetween
 	) {
@@ -88,7 +88,7 @@ fun ExploreTopBar(modifier: Modifier = Modifier) {
 		) {
 			Icon(
 				imageVector = Icons.Outlined.Tune,
-				modifier = Modifier,
+				modifier = Modifier.size(20.dp),
 				contentDescription = null
 			)
 		}
