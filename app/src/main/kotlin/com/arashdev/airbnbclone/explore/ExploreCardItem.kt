@@ -1,6 +1,5 @@
 package com.arashdev.airbnbclone.explore
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,10 +18,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -33,7 +30,6 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.arashdev.airbnbclone.R
 import com.arashdev.airbnbclone.ui.theme.AirbnbCloneTheme
 
 @Composable
@@ -44,9 +40,10 @@ fun ExploreCardItem(
 	title: String,
 	description: String,
 	price: String,
-	stars: Float
+	stars: Float,
+	onItemClicked: () -> Unit
 ) {
-	Column(modifier = modifier.clickable { }) {
+	Column(modifier = modifier.clickable { onItemClicked() }) {
 //		Image(
 //			painter = painterResource(R.drawable.ic_launcher_background),
 //			modifier = Modifier
@@ -127,6 +124,7 @@ private fun AirbnbCardPreview() {
 			stars = 45.0f,
 			location = "California, US ",
 			imageUrl = "http://www.bing.com/search?q=nulla",
+			onItemClicked = {}
 		)
 	}
 }

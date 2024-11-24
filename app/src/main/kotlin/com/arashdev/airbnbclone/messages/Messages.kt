@@ -1,4 +1,4 @@
-package com.arashdev.airbnbclone.Messages
+package com.arashdev.airbnbclone.messages
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding

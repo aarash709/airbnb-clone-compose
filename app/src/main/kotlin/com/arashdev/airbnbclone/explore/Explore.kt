@@ -18,7 +18,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.PrimaryScrollableTabRow
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -40,7 +39,7 @@ import kotlinx.serialization.json.Json
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ExploreScreen(modifier: Modifier = Modifier) {
+fun Explore(modifier: Modifier = Modifier, onItemClicked: (Int) -> Unit) {
 	var data: List<AirbnbDataItem> by remember {
 		mutableStateOf(listOf())
 	}
@@ -114,7 +113,8 @@ fun ExploreScreen(modifier: Modifier = Modifier) {
 							title = airbnbData.name ?: "",
 							description = "Hosted by ${airbnbData.host_name}",
 							price = "${airbnbData.price ?: ""}$",
-							stars = airbnbData.review_scores_rating!!.toFloat()
+							stars = airbnbData.review_scores_rating!!.toFloat(),
+							onItemClicked = { onItemClicked(airbnbData.id!!.toInt()) }
 						)
 					}
 				}
@@ -127,6 +127,6 @@ fun ExploreScreen(modifier: Modifier = Modifier) {
 @Composable
 private fun ExplorePreview() {
 	AirbnbCloneTheme {
-		ExploreScreen()
+		Explore(modifier = Modifier, onItemClicked = {})
 	}
 }
