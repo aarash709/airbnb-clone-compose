@@ -5,6 +5,7 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.Scaffold
@@ -43,12 +44,17 @@ fun AirbnbNavHost(
 			}
 		) {
 			val exploreNavController = rememberNavController()
-			Scaffold(bottomBar = {
-				AirbnbNavigationBar(
-					navController = exploreNavController
-				)
-			}) { padding ->
-				Box(modifier = Modifier.padding(padding).systemBarsPadding()) {
+			Scaffold(
+				bottomBar = {
+					AirbnbNavigationBar(
+						navController = exploreNavController
+					)
+				},
+				contentWindowInsets = WindowInsets(0, 0, 0, 0)
+			) { padding ->
+				Box(modifier = Modifier
+					.padding(padding)
+					.systemBarsPadding()) {
 					NavHost(
 						startDestination = ExploreNavGraph,
 						navController = exploreNavController,
